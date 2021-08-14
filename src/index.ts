@@ -9,7 +9,8 @@ dotenv.config()
 
 const app = express()
 
-app.use(express.static(path.join(process.cwd(), "/src/public")))
+app.use(express.static(path.resolve(__dirname, '/public')))
+app.set('views', __dirname + '/views')
 app.set("view engine", "ejs")
 app.use(express.json())
 
@@ -18,5 +19,5 @@ app.use(Routes)
 const port = process.env.PORT || 3000
 
 app.listen(port, () => {
-	console.log("Online")
+	console.log(`[SERVER] - Online in port ${port}`)
 })
